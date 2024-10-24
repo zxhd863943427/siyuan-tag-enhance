@@ -2,7 +2,7 @@
   "name": "siyuan-tag-enhance",
   "author": "zxhd863943427",
   "url": "https://github.com/zxhd863943427/siyuan-tag-enhance",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "minAppVersion": "3.0.12",
   "backends": [
     "windows",
