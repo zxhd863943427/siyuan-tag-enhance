@@ -18,9 +18,16 @@
         vitrualContents.scrollTo(0,0)
         let sql = `
         SELECT * FROM blocks WHERE id in (
-          SELECT id FROM blocks_fts WHERE blocks_fts MATCH '{tag}:"#${tag}#" OR "#${tag}/"*'
+          SELECT 
+            CASE 
+              WHEN tag == REPLACE(TRIM(markdown), CHAR(0x200B), '') AND parent_id != "" THEN parent_id
+              ELSE id
+            END AS id
+          FROM blocks WHERE id in (
+            SELECT id FROM blocks_fts WHERE blocks_fts MATCH '{tag}:"#${tag}#" OR "#${tag}/"*'
+          )
+            AND type not in ("i","l","s","b")
         )
-          AND type not in ("i","l","s","b")
         `;
         data = (await query(sql)).map(i=>{return {block:i,expand:true}});
         console.log(data)
