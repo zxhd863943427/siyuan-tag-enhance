@@ -10,6 +10,7 @@
     import { onDestroy, onMount } from "svelte";
     import { version, sql as query } from "@/api";
     import { showMessage, fetchPost, Protyle } from "siyuan";
+    import Block from "@/libs/components/svelte-block.svelte";
 
     export let app;
 
@@ -37,9 +38,7 @@
         let sql = "SELECT * FROM blocks ORDER BY RANDOM () LIMIT 1;";
         let blocks: Block[] = await query(sql);
         blockID = blocks[0].id;
-        return new Protyle(app, divProtyle, {
-            blockId: blockID
-        });
+
     }
 </script>
 
@@ -54,10 +53,16 @@
     <div class="plugin-sample__time">
         System current time: <span id="time">{time}</span>
     </div>
+    <Block app={app} iProtyleOption={{
+        blockId:blockID,
+        render: {
+            gutter: true
+        }
+    }}></Block>
     <div class="fn__hr" />
     <div class="fn__hr" />
     <div>Protyle demo: id = {blockID}</div>
     <div class="fn__hr" />
-    <div id="protyle" style="height: 360px;" bind:this={divProtyle}/>
+    
 </div>
 

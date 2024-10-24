@@ -1,8 +1,8 @@
 {
   "name": "siyuan-tag-enhance",
-  "author": "frostime",
-  "url": "https://github.com/siyuan-note/plugin-sample-vite-svelte",
-  "version": "0.3.6",
+  "author": "zxhd863943427",
+  "url": "https://github.com/zxhd863943427/siyuan-tag-enhance",
+  "version": "0.0.1",
   "minAppVersion": "3.0.12",
   "backends": [
     "windows",
@@ -20,8 +20,8 @@
     "desktop-window"
   ],
   "displayName": {
-    "en_US": "Plugin sample with vite and svelte",
-    "zh_CN": "插件样例 vite + svelte 版"
+    "en_US": "siyuan-tag-enhance",
+    "zh_CN": "siyuan标签增强"
   },
   "description": {
     "en_US": "SiYuan plugin sample with vite and svelte",

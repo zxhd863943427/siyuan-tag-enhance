@@ -9,7 +9,8 @@ import fg from 'fast-glob';
 import vitePluginYamlI18n from './yaml-plugin';
 
 const env = process.env;
-const isSrcmap = env.VITE_SOURCEMAP === 'inline';
+// const isSrcmap = env.VITE_SOURCEMAP === 'inline';
+const isSrcmap = false;
 const isDev = env.NODE_ENV === 'development';
 
 const outputDir = isDev ? "dev" : "dist";
@@ -51,7 +52,7 @@ export default defineConfig({
     build: {
         outDir: outputDir,
         emptyOutDir: false,
-        minify: true,
+        minify: false,
         sourcemap: isSrcmap ? 'inline' : false,
 
         lib: {
