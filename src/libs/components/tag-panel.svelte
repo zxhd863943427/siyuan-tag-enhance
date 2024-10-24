@@ -30,7 +30,7 @@
         )
         `;
         data = (await query(sql)).map(i=>{return {block:i,expand:true}});
-        console.log(data)
+        // console.log(data)
     }
     $:initTagList(tag)
     function geniProtyleOption(b:Block):IProtyleOption{

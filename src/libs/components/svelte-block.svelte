@@ -14,7 +14,7 @@
     $:{
         if(JSON.stringify(iProtyleOption) !== JSON.stringify(cacheProtyleOption)){
             cacheProtyleOption = {...iProtyleOption}
-            console.log("expend",isExpanded)
+            // console.log("expend",isExpanded)
             protyle = new Protyle(app,dom,iProtyleOption)
             
         }
@@ -34,7 +34,7 @@
     let liSvgClass = "b3-list-item__arrow";
     let ulClass = "fn__none";
     $: {
-        console.log("react expend",isExpanded)
+        // console.log("react expend",isExpanded)
         if (isExpanded) {
             liSvgClass = "b3-list-item__arrow b3-list-item__arrow--open";
             ulClass = "";
@@ -70,6 +70,6 @@
 
 <style>
     .block{
-        min-height: 200px;
+        min-height: 230px;
     }
 </style>
