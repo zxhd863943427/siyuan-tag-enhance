@@ -95,7 +95,7 @@ export default class PluginSample extends Plugin {
         // this.loadData(STORAGE_NAME);
         bindBasicEventHandler(false,(event)=>{
             clickHandler(CONSTANTS.ACTION_RAW_CLICK,(event:Event)=>{
-                console.log(event)
+                // console.log(event)
                 let tagElement = this.getTagElement(event.target as HTMLElement)
                 if (tagElement != null){
                     let label = tagElement.dataset["label"]
