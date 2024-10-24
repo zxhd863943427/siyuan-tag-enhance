@@ -24,8 +24,8 @@
     "zh_CN": "siyuan标签增强"
   },
   "description": {
-    "en_US": "SiYuan plugin sample with vite and svelte",
-    "zh_CN": "使用 vite 和 svelte 开发的思源插件样例"
+    "en_US": "Provides an approximation of the backlink panel's tab panel when clicking on the plugin panel",
+    "zh_CN": "在点击插件面板时，提供一个近似反链面板的标签面板"
   },
   "readme": {
     "en_US": "README.md",
@@ -38,7 +38,7 @@
   },
   "keywords": [
     "plugin",
-    "sample",
-    "插件样例"
+    "tag",
+    "backlink"
   ]
 }
