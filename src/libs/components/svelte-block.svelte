@@ -100,7 +100,7 @@
             ><use xlink:href="#iconRight" /></svg
         >
     </span>
-    <span class="b3-list-item__text">{iProtyleOption.blockId}:{title}</span>
+    <span class="b3-list-item__text">{title}</span>
 </li>
 
 <div bind:this={root} class={"block " + ulClass} style={`min-height:${initHeight}px`}></div>
