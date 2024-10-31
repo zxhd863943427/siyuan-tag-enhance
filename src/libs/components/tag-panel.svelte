@@ -9,6 +9,7 @@
     export let tag:string
     let data: {block:Block,expand:boolean}[] = []
     let root:HTMLElement
+    let cacheSize:Map<string,[number,number]> = new Map()
     let initTagList = async (tag:string)=>{
         if (tag==""){
             return
@@ -54,6 +55,18 @@
         }
       })
     }
+
+    function setCacheSize(event:any){
+      cacheSize.set(event.detail.id,[event.detail.height,event.detail.width]) 
+    }
+    function getCacheHeight(id:string){
+      let cache = cacheSize.get(id) || [230,300]
+      return cache[0]
+    }
+    function getCacheWidth(id:string){
+      let cache = cacheSize.get(id) || [230,300]
+      return cache[1]
+    }
 </script>
 
 <div bind:this={root} style="height: 100%;">
@@ -64,7 +77,10 @@
       iProtyleOption={geniProtyleOption(item.block)} 
       title = {item.block.hpath} 
       isExpanded={item.expand} 
-      on:toggle={toggleHandle}>
+      initHeight={getCacheHeight(item.block.id)}
+      initWidth={getCacheWidth(item.block.id)}
+      on:toggle={toggleHandle}
+      on:cacheSize={setCacheSize}>
     </SvelteBlock>
      
   </VirtualList>

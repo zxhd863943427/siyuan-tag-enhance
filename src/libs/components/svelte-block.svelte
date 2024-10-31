@@ -5,27 +5,64 @@
     export let iProtyleOption:IProtyleOption
     export let title:string
     export let isExpanded:boolean
+    export let initHeight:number = 230
+    export let initWidth:number = 300
     let root:HTMLElement
     let protyle:Protyle
     let dom = document.createElement("div")
     let cacheProtyleOption :IProtyleOption
     const dispatch = createEventDispatcher();
+    let sizeObserver:ResizeObserver
 
     $:{
         if(JSON.stringify(iProtyleOption) !== JSON.stringify(cacheProtyleOption)){
             cacheProtyleOption = {...iProtyleOption}
             // console.log("expend",isExpanded)
             protyle = new Protyle(app,dom,iProtyleOption)
-            
+
         }
     }
+
+
     onMount(()=>{
         root.appendChild(dom)
+        let rootWidth = root.getClientRects()[0].width
+        let scale = rootWidth / initWidth
+        initHeight = initHeight / scale
+        sizeObserver = new ResizeObserver(()=>{
+            let domRect = root?.getClientRects()
+            if (!domRect || domRect.length == 0){
+                return
+            }
+            updateCache()
+        })
+        sizeObserver.observe(dom)
     })
     
     onDestroy(()=>{
         protyle.destroy()
+
     })
+    function updateCache(){
+        let currentWidth:number
+        let currentHeight:number
+        let domRect = dom?.getClientRects()
+        if (!domRect || domRect.length == 0){
+            return
+        }else{
+            currentHeight = domRect[0].height
+            currentWidth = domRect[0].width
+            if (currentHeight < 230){
+                return
+            }
+        }
+
+        dispatch("cacheSize",{
+            id:iProtyleOption.blockId,
+            height:currentHeight,
+            width:currentWidth
+        })
+    }
     function toggleExpand(expand?: boolean) {
         isExpanded = expand === undefined ? !isExpanded : expand;
         dispatch('toggle', { id: iProtyleOption.blockId,expand:isExpanded });
@@ -63,13 +100,13 @@
             ><use xlink:href="#iconRight" /></svg
         >
     </span>
-    <span class="b3-list-item__text">{title}</span>
+    <span class="b3-list-item__text">{iProtyleOption.blockId}:{title}</span>
 </li>
 
-<div bind:this={root} class={"block " + ulClass}></div>
+<div bind:this={root} class={"block " + ulClass} style={`min-height:${initHeight}px`}></div>
 
 <style>
     .block{
-        min-height: 230px;
+        /* height: 230px; */
     }
 </style>
